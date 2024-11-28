@@ -3,17 +3,47 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Kanye Quotes</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <title>Search and Select</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
     </head>
-    <body>
-        <div class="container">
-            <h1>Kanye West Quotes</h1>
-            <div id="quote-container">
-                <p id="quote">Click the button to get a quote!</p>
+    <body class="bg-gray-100 p-6 flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-2xl">
+            <!-- Search Bar-->
+            <div class="flex space-x-4 mb-4">
+                <input
+                    type="text"
+                    id="searchBar"
+                    placeholder="Search..."
+                    class="w-full p-2 border border-gray-300 rounded"
+                />
+                <select
+                    id="filterSelect"
+                    class="p-2 border border-gray-300 rounded"
+                >
+                    <option value="displayName">Name</option>
+                    <option value="role">Role</option>
+                </select>
             </div>
-            <button id="new-quote">New Quote</button>
+            <!-- List of Items -->
+            <div class="w-full">
+                <div
+                    id="itemList"
+                    class="h-128 overflow-y-auto border border-gray-300 rounded p-2 bg-gray-700"
+                ></div>
+                <!-- Clear Button, not done yet -->
+                <div class="mt-4">
+                    <button
+                        id="clearButton"
+                        class="w-full p-2 bg-blue-500 text-white rounded"
+                    >
+                        Clear
+                    </button>
+                </div>
+            </div>
         </div>
-        <script src="js/index.js"></script>
+        <script type="module" src="js/index.js"></script>
     </body>
 </html>
