@@ -1,5 +1,3 @@
-import "../css/style.css";
-
 document.addEventListener("DOMContentLoaded", () => {
   const apiUrl = "https://valorant-api.com/v1/agents";
   const searchBar = document.getElementById("searchBar");
@@ -22,42 +20,39 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderItems(filteredItems) {
     itemList.innerHTML = "";
     filteredItems.forEach((item) => {
-      const listItem = document.createElement("div");
-      listItem.classList.add(
-        "game-item",
-        "p-4",
-        "border",
-        "border-gray-500",
-        "rounded",
-        "mb-4",
-        "bg-gray-455",
-        "flex",
-        "items-center",
-      );
-
-      listItem.innerHTML = `
-      <img src="${item.fullPortrait}" alt="${item.displayName} Portrait" class="w-48 h-48 object-cover rounded mr-4">
-      <div class="text-white">
-        <h3 class="text-lg font-bold">${item.displayName}</h3>
-        <p class="text-gray-300">${item.description}</p>
-        <div>
-          <h4 class="text-md font-semibold">Abilities:</h4>
-          <ul class="list-disc pl-5">
-            ${item.abilities
-              .map(
-                (ability) => `
-              <li>
-                <strong>${ability.displayName}:</strong> ${ability.description}
-              </li>
-            `,
-              )
-              .join("")}
-          </ul>
+      const listItem = `
+      <div class="game-item p-4 border border-gray-700 rounded mb-4 bg-gray-800 flex items-center">
+        <div class="flex-shrink-0">
+          <img src="${item.fullPortrait}" alt="${item.displayName} Portrait" class="w-24 h-24 object-cover rounded mr-4">
+        </div>
+        <div class="flex-grow text-white">
+          <strong><h3 class="text-lg font-bold">${item.displayName}</h3></strong>
+          <p class="text-gray-300">${item.description}</p>
+          <div>
+            <h4 class="text-md font-semibold">Abilities:</h4>
+            <ul class="list-disc">
+              ${item.abilities
+                .map(
+                  (ability) => `
+                <li>
+                  <strong>${ability.displayName}:</strong> ${ability.description}
+                </li>
+              `,
+                )
+                .join("")}
+            </ul>
+          </div>
         </div>
       </div>
       `;
+      itemList.insertAdjacentHTML("beforeend", listItem);
+    });
 
-      itemList.appendChild(listItem);
+    document.querySelectorAll(".details-button").forEach((button) => {
+      button.addEventListener("click", async (event) => {
+        const agentId = event.target.getAttribute("data-agent-id");
+        await fetchAgentDetails(agentId);
+      });
     });
   }
 
@@ -65,9 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchText = searchBar.value.toLowerCase();
     const filterBy = filterSelect.value;
     const filteredItems = items.filter((item) => {
-      if (filterBy == "displayName") {
+      if (filterBy === "displayName") {
         return item.displayName.toLowerCase().includes(searchText);
-      } else if (filterBy == "role") {
+      } else if (filterBy === "role") {
         return (
           item.role && item.role.displayName.toLowerCase().includes(searchText)
         );

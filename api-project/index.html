@@ -8,11 +8,13 @@
             href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
             rel="stylesheet"
         />
+        <link href="css/style.css" rel="stylesheet" />
     </head>
-    <body class="bg-gray-100 p-6 flex items-center justify-center min-h-screen">
+    <body class="bg-gray-700 p-6 flex items-center justify-center min-h-screen">
         <div class="w-full max-w-2xl">
             <!-- Search Bar-->
             <div class="flex space-x-4 mb-4">
+                <label for="searchBar" class="sr-only">Search</label>
                 <input
                     type="text"
                     id="searchBar"
@@ -31,19 +33,34 @@
             <div class="w-full">
                 <div
                     id="itemList"
-                    class="h-128 overflow-y-auto border border-gray-300 rounded p-2 bg-gray-700"
-                ></div>
+                    class="h-128 overflow-y-auto border border-transparent rounded p-2 bg-gray-700"
+                >
+                    <!-- Example Item with Image and Text in the Same Card -->
+                    <div
+                        class="flex items-center space-x-4 p-4 bg-white rounded mb-4"
+                    >
+                        <img
+                            src="path/to/image.jpg"
+                            alt="Item Image"
+                            class="w-16 h-16 rounded-full"
+                        />
+                        <div>
+                            <h3 class="text-lg font-semibold">Item Name</h3>
+                            <p class="text-gray-500">Item Description</p>
+                        </div>
+                    </div>
+                </div>
                 <!-- Clear Button, not done yet -->
                 <div class="mt-4">
                     <button
                         id="clearButton"
-                        class="w-full p-2 bg-blue-500 text-white rounded"
+                        class="w-full p-2 bg-blue-800 text-white rounded"
                     >
                         Clear
                     </button>
                 </div>
             </div>
         </div>
-        <script type="module" src="js/index.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
