@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchBar = document.getElementById("searchBar");
   const filterSelect = document.getElementById("filterSelect");
   const itemList = document.getElementById("itemList");
+  const clearButton = document.getElementById("clearButton");
 
   let items = [];
 
@@ -74,6 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchBar.addEventListener("input", filterItems);
   filterSelect.addEventListener("change", filterItems);
+  clearButton.addEventListener("click", () => {
+    searchBar.value = "";
+    filterSelect.value = "displayName";
+    window.scrollTo(0, 0);
+    filterItems();
+  });
 
   fetchItems();
 });
